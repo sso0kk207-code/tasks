@@ -1,0 +1,55 @@
+{
+    "books": [
+        {
+            "title": "1984",
+            "isbn": 1234567890,
+            "author": "George Orwell",
+            "genre": "Dystopia",
+            "year": 1949,
+            "is_available": true,
+            "reader": null
+        },
+        {
+            "title": "Brave New World",
+            "isbn": 1234567890123,
+            "author": "Aldous Huxley",
+            "genre": "Dystopia",
+            "year": 1932,
+            "is_available": false,
+            "reader": "Alice"
+        },
+        {
+            "title": "Fahrenheit 451",
+            "isbn": 1111111111,
+            "author": "Ray Bradbury",
+            "genre": "Sci-Fi",
+            "year": 1953,
+            "is_available": true,
+            "reader": null
+        },
+        {
+            "title": "The Hobbit",
+            "isbn": 2222222222,
+            "author": "J.R.R. Tolkien",
+            "genre": "Fantasy",
+            "year": 1937,
+            "is_available": true,
+            "reader": null
+        },
+        {
+            "title": "Dune",
+            "isbn": 3333333333333,
+            "author": "Frank Herbert",
+            "genre": "Sci-Fi",
+            "year": 1965,
+            "is_available": true,
+            "reader": null
+        }
+    ],
+    "readers": [
+        {
+            "name": "Alice",
+            "borrowed_books": [1234567890123]
+        }
+    ]
+}
