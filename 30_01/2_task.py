@@ -3,17 +3,17 @@ import re
 
 summary_response = errors = gets = posts = puts = deletes = 0
 
-pattern = r'(?P<ip>\S+) - - \[(?P<date>.*?)\] "(?P<method>\w+) (?P<path>\S+) (?P<proto>.*?)" (?P<status>\d+) (?P<size>\d+) "(?P<agent>.*?)" (?P<time>\d+\.\d+)'
+pattern = r'(?P<ip>\S+) - - \[(?P<date>.*?)\] "(?P<method>\w+) (?P<path>\S+) (?P<proto>.*?)" (?P<status>\d+) (?P<size>\d+) "(?P<agent>.*?)" (?P<time>\d+\.\d+)' #сделал регулярное выражение
 
 ips = []
 agents = []
 
-try:
+try: # проверка на существование файла
     with open("30_01/access.log", "r") as f:
         for st in f:
             match = re.match(pattern, st)
             if not match:
-                continue
+                continue #сделал проверку строки, если она битая
             res = match.groupdict()
             summary_response += float(res['time'])
             if res['status'].startswith(("4", "5")):
@@ -32,8 +32,8 @@ try:
 except FileNotFoundError:
     print('Файл не был найден')
 
-avg = summary_response / len(ips) if ips else 0
+avg = summary_response / len(ips) if ips else 0 #тернарка если не будет ips
 
 print(f"====== Результаты анализа логов ======\nКоличество методов GET: {gets}\nКоличество методов POST: {posts}\nКоличество методов PUT: {puts}\nКоличество методов DELETE: {deletes}\nСреднее время ответа: {avg:.2f}\nКоличество ошибок: {errors}\nСамый популярный User-Agent: {Counter(agents).most_common(1)[0][0]}\nТоп 10 по популярности ip:")
-for ip in enumerate(dict(Counter(ips).most_common(10)).keys(), start=1):
+for ip in enumerate(dict(Counter(ips).most_common(10)).keys(), start=1): #сделал enumerate из топ 10 ip начиная с 1
     print(ip)
